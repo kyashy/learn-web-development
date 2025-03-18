@@ -13,9 +13,15 @@ let myButton = document.querySelector("button");
 let myHeading = document.querySelector("h1");
 
 function setUserName() {
-    const myName = prompt("ページタイトルに含めたいので、あなたの名前を教えてね！")
-    localStorage.setItem("name", myName);
-    myHeading.textContent = `${myName}さんへ、Mozillaのご紹介`;
+    const myName = prompt("ページタイトルに含めたいので、あなたの名前を教えてね！");
+    if (myName === null) {
+        return;
+    } else if (!myName) {
+        setUserName();
+    } else {
+        localStorage.setItem("name", myName);
+        myHeading.textContent = `${myName}さんへ、Mozillaのご紹介`;
+    }
 }
 
 const storedName = localStorage.getItem("name");
